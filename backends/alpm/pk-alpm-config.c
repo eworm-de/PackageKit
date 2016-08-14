@@ -37,8 +37,8 @@ static gchar *xfercmd = NULL;
 
 typedef struct
 {
-	 gboolean		 checkspace, color, ilovecandy, totaldl,
-				 usesyslog, verbosepkglists;
+	 gboolean		 checkspace, color, ilovecandy, stupidproxy,
+				 totaldl, usesyslog, verbosepkglists;
 	 gdouble		 deltaratio;
 
 	 gchar			*arch, *cleanmethod, *dbpath, *gpgdir, *logfile,
@@ -139,6 +139,14 @@ pk_alpm_config_set_ilovecandy (PkAlpmConfig *config)
 }
 
 static void
+pk_alpm_config_set_stupidproxy (PkAlpmConfig *config)
+{
+	g_return_if_fail (config != NULL);
+
+	config->stupidproxy = TRUE;
+}
+
+static void
 pk_alpm_config_set_totaldl (PkAlpmConfig *config)
 {
 	g_return_if_fail (config != NULL);
@@ -181,6 +189,7 @@ static const PkAlpmConfigBoolean pk_alpm_config_boolean_options[] = {
 	{ "CheckSpace", pk_alpm_config_set_checkspace },
 	{ "Color", pk_alpm_config_set_color },
 	{ "ILoveCandy", pk_alpm_config_set_ilovecandy },
+	{ "StupidProxy", pk_alpm_config_set_stupidproxy },
 	{ "TotalDownload", pk_alpm_config_set_totaldl },
 	{ "UseDelta", pk_alpm_config_set_usedelta },
 	{ "UseSyslog", pk_alpm_config_set_usesyslog },
