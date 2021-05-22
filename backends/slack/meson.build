@@ -23,7 +23,8 @@ packagekit_backend_slack_module = shared_module(
     '-DG_LOG_DOMAIN="PackageKit-Slackware"',
     '-DLOCALSTATEDIR="@0@"'.format(join_paths(get_option('prefix'), get_option('localstatedir'))),
     '-DLIBDIR="@0@"'.format(join_paths(get_option('prefix'), get_option('libdir'))),
-    '-DSYSCONFDIR="@0@"'.format(get_option('sysconfdir')),
+    '-DSYSCONFDIR="@0@"'.format(sysconfdir),
+    '-DPK_SYSCONFDIR="@0@"'.format(pk_sysconfdir),
   ],
   override_options: ['c_std=c14', 'cpp_std=c++14'],
   install: true,
@@ -44,7 +45,7 @@ configure_file(
   output: 'Slackware.conf',
   configuration: slackware_config_data,
   install: true,
-  install_dir: join_paths(get_option('sysconfdir'), 'PackageKit'),
+  install_dir: join_paths(sysconfdir, 'PackageKit'),
 )
 
 install_data(
